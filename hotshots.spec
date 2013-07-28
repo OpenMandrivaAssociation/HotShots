@@ -36,8 +36,7 @@ cd build
     QMAKE_CFLAGS+="%{optflags}" \
     QMAKE_CXXFLAGS+="%{optflags}" \
     QMAKE_STRIP="true" \
-    INSTALL_PREFIX=%{_prefix} \
-    MYAPP_INSTALL_TRANS=%{_datadir}/%{name}/lang
+    INSTALL_PREFIX=%{_prefix} 
 %make
 
 %install
@@ -72,7 +71,7 @@ cd -
 
 %find_lang %{name} --with-qt
 
-%files
+%files  -f %{name}.lang
 %doc *.txt
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
