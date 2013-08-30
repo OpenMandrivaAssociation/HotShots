@@ -7,7 +7,7 @@
 %define debug_package   %{nil}
 
 Name:           hotshots
-Version:        1.2.0
+Version:        1.2.1
 Release:        1
 License:        GPLv2+
 Summary:        Screen-shot and Annotation Tool
