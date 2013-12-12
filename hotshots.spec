@@ -3,22 +3,23 @@
 # Generato: http://www.mandrivausers.ro/
 # MRB-Falticska Florin
 ######################################################
-%define  distsuffix mrb
-%define debug_package   %{nil}
+#define  distsuffix mrb
+#define debug_package   %{nil}
 
 Name:           hotshots
-Version:        1.2.1
+Version:        2.0.0
 Release:        1
 License:        GPLv2+
 Summary:        Screen-shot and Annotation Tool
 URL:            https://sourceforge.net/projects/hotshots/
 Group:          Graphics
-Source0:        http://sourceforge.net/projects/hotshots/files/%{version}/HotShots-%{version}.zip
+Source0:        http://sourceforge.net/projects/hotshots/files/%{version}/HotShots-%{version}-src.zip
 BuildRequires:  imagemagick
 BuildRequires:  hicolor-icon-theme
 BuildRequires:  libqxt-devel
 BuildRequires:  qt4-devel
 BuildRequires:  desktop-file-utils
+
 
 
 %description
@@ -27,7 +28,7 @@ a variety of image formats as well as adding annotations and graphical
 data (arrows, lines, texts, ...).
 
 %prep
-%setup -qn HotShots-%{version}
+%setup -qn HotShots-%{version}-src
 sed -i 's/\r$//' *.txt
 
 %build
