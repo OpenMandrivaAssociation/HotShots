@@ -70,14 +70,33 @@ desktop-file-install %{name}.desktop \
   --add-category=Graphics 
 cd -
 
-%find_lang %{name} --with-qt
 
-%files  -f %{name}.lang
+
 %doc *.txt
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/*/%{name}.*
 %{_mandir}/man?/*
 %{_datadir}/%{name}
-
-
+%{_datadir}/application/hotshots.desktop
+%{_datadir}/mime/packages/hotshots.xml
+%lang(cs) %{_datadir}/%{name}/locale/hotshots_cs.qm
+%lang(de) %{_datadir}/%{name}/locale/hotshots_de.qm
+%lang(el) %{_datadir}/%{name}/locale/hotshots_el.qm
+%lang(es) %{_datadir}/%{name}/locale/hotshots_es.qm
+%lang(eu) %{_datadir}/%{name}/locale/hotshots_eu.qm
+%lang(fr) %{_datadir}/%{name}/locale/hotshots_fr.qm
+%lang(gl) %{_datadir}/%{name}/locale/hotshots_gl.qm
+%lang(it) %{_datadir}/%{name}/locale/hotshots_it.qm
+%lang(ja) %{_datadir}/%{name}/locale/hotshots_ja.qm
+%lang(lt) %{_datadir}/%{name}/locale/hotshots_lt.qm
+%lang(pl) %{_datadir}/%{name}/locale/hotshots_pl.qm
+%lang(ro) %{_datadir}/%{name}/locale/hotshots_ro.qm
+%lang(ru) %{_datadir}/%{name}/locale/hotshots_ru.qm
+%lang(si) %{_datadir}/%{name}/locale/hotshots_si.qm
+%lang(sk) %{_datadir}/%{name}/locale/hotshots_sk.qm
+%lang(sr) %{_datadir}/%{name}/locale/hotshots_sr.qm
+%lang(tr) %{_datadir}/%{name}/locale/hotshots_tr.qm
+%lang(uk) %{_datadir}/%{name}/locale/hotshots_uk.qm
+%lang(vi) %{_datadir}/%{name}/locale/hotshots_vi.qm
+%lang(zh) %{_datadir}/%{name}/locale/hotshots_zh.qm
