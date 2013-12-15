@@ -5,6 +5,8 @@
 ######################################################
 #define  distsuffix mrb
 #define debug_package   %{nil}
+# lang 
+%define _files_listed_twice_terminate_build 0
 
 Name:           hotshots
 Version:        2.0.0
