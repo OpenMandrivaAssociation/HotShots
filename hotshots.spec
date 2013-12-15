@@ -71,7 +71,7 @@ desktop-file-install %{name}.desktop \
 cd -
 
 
-
+%files
 %doc *.txt
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
