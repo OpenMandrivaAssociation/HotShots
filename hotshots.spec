@@ -3,7 +3,7 @@
 
 
 Name:           hotshots
-Version:        2.0.1
+Version:        2.1.0
 Release:        1
 License:        GPLv2+
 Summary:        Screen-shot and Annotation Tool
@@ -42,6 +42,8 @@ cmake -DCMAKE_INSTALL_PREFIX=%{buildroot}/usr \
 cd build
 make INSTALL_ROOT=%{buildroot} install
 cd -
+
+
 # icons
 rm -f %{buildroot}%{_datadir}/pixmaps/%{name}.png
 install -Dm 0644 res/%{name}.png \
