@@ -4,7 +4,7 @@
 
 Name:           hotshots
 Version:        2.1.1
-Release:        1
+Release:        2
 License:        GPLv2+
 Summary:        Screen-shot and Annotation Tool
 URL:            https://sourceforge.net/projects/hotshots/
@@ -77,6 +77,7 @@ desktop-file-install %{name}.desktop \
   --add-category=Graphics 
 cd -
 
+perl -pi -e "s|/usr/local/bin/hotshots|hotshots|"  %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %files 
 %doc *.txt
