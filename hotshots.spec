@@ -3,7 +3,7 @@
 
 
 Name:           hotshots
-Version:        2.1.0
+Version:        2.1.1
 Release:        1
 License:        GPLv2+
 Summary:        Screen-shot and Annotation Tool
@@ -30,6 +30,14 @@ data (arrows, lines, texts, ...).
 sed -i 's/\r$//' *.txt
 iconv -f iso8859-1 -t utf-8 Changelog.txt > \
   Changelog.txt.conv && mv -f Changelog.txt.conv Changelog.txt
+
+%if %{mdvver} >= 201410
+# fix png rgb 
+pushd res
+find . -type f -name "*.png" -exec convert {} -strip {} \;
+popd  
+%endif
+
 
 %build
 cd build
