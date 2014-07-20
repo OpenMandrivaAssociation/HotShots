@@ -1,24 +1,22 @@
-######################################################
-# SpecFile: hotshots.spec 
-# Generato: http://www.mandrivausers.ro/
-# MRB-Falticska Florin
-######################################################
-#define  distsuffix mrb
-#define debug_package   %{nil}
+#empty debug
+%define debug_package   %{nil}
+
 
 Name:           hotshots
-Version:        2.0.0
+Version:        2.1.1
 Release:        1
 License:        GPLv2+
 Summary:        Screen-shot and Annotation Tool
 URL:            https://sourceforge.net/projects/hotshots/
 Group:          Graphics
-Source0:        http://sourceforge.net/projects/hotshots/files/%{version}/HotShots-%{version}-src.zip
+Source0:        http://garr.dl.sourceforge.net/project/hotshots/%{version}/HotShots-%{version}-src.zip
+
 BuildRequires:  imagemagick
 BuildRequires:  hicolor-icon-theme
 BuildRequires:  libqxt-devel
 BuildRequires:  qt4-devel
 BuildRequires:  desktop-file-utils
+BuildRequires:  cmake  >= 2.8.9
 
 
 
@@ -30,20 +28,29 @@ data (arrows, lines, texts, ...).
 %prep
 %setup -qn HotShots-%{version}-src
 sed -i 's/\r$//' *.txt
+iconv -f iso8859-1 -t utf-8 Changelog.txt > \
+  Changelog.txt.conv && mv -f Changelog.txt.conv Changelog.txt
+
+%if %{mdvver} >= 201410
+# fix png rgb 
+pushd res
+find . -type f -name "*.png" -exec convert {} -strip {} \;
+popd  
+%endif
+
 
 %build
 cd build
-%qmake_qt4 \
-    QMAKE_CFLAGS+="%{optflags}" \
-    QMAKE_CXXFLAGS+="%{optflags}" \
-    QMAKE_STRIP="true" \
-    INSTALL_PREFIX=%{_prefix} 
+cmake -DCMAKE_INSTALL_PREFIX=%{buildroot}/usr \
+	  -DCMAKE_BUILD_TYPE=Release 
+
 %make
 
 %install
-pushd build
+cd build
 make INSTALL_ROOT=%{buildroot} install
-popd
+cd -
+
 
 # icons
 rm -f %{buildroot}%{_datadir}/pixmaps/%{name}.png
@@ -70,14 +77,34 @@ desktop-file-install %{name}.desktop \
   --add-category=Graphics 
 cd -
 
-%find_lang %{name} --with-qt
 
-%files  -f %{name}.lang
+%files 
 %doc *.txt
 %{_bindir}/%{name}
-%{_datadir}/applications/%{name}.desktop
+%{_datadir}/applications/*.desktop
 %{_datadir}/icons/hicolor/*/*/%{name}.*
-%{_mandir}/man?/*
-%{_datadir}/%{name}
-
-
+%{_mandir}/man1/*
+%{_datadir}/mime/packages/hotshots.xml
+%{_datadir}/%{name}/*.txt
+# lang
+%lang(cs) %{_datadir}/%{name}/locale/hotshots_cs.qm
+%lang(de) %{_datadir}/%{name}/locale/hotshots_de.qm
+%lang(el) %{_datadir}/%{name}/locale/hotshots_el.qm
+%lang(es) %{_datadir}/%{name}/locale/hotshots_es.qm
+%lang(eu) %{_datadir}/%{name}/locale/hotshots_eu.qm
+%lang(fr) %{_datadir}/%{name}/locale/hotshots_fr.qm
+%lang(gl) %{_datadir}/%{name}/locale/hotshots_gl.qm
+%lang(it) %{_datadir}/%{name}/locale/hotshots_it.qm
+%lang(ja) %{_datadir}/%{name}/locale/hotshots_ja.qm
+%lang(lt) %{_datadir}/%{name}/locale/hotshots_lt.qm
+%lang(pl) %{_datadir}/%{name}/locale/hotshots_pl.qm
+%lang(pt) %{_datadir}/%{name}/locale/hotshots_pt.qm
+%lang(ro) %{_datadir}/%{name}/locale/hotshots_ro.qm
+%lang(ru) %{_datadir}/%{name}/locale/hotshots_ru.qm
+%lang(si) %{_datadir}/%{name}/locale/hotshots_si.qm
+%lang(sk) %{_datadir}/%{name}/locale/hotshots_sk.qm
+%lang(sr) %{_datadir}/%{name}/locale/hotshots_sr.qm
+%lang(tr) %{_datadir}/%{name}/locale/hotshots_tr.qm
+%lang(uk) %{_datadir}/%{name}/locale/hotshots_uk.qm
+%lang(vi) %{_datadir}/%{name}/locale/hotshots_vi.qm
+%lang(zh) %{_datadir}/%{name}/locale/hotshots_zh.qm
