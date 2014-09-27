@@ -1,15 +1,15 @@
 #empty debug
 %define debug_package   %{nil}
-
+%define oname HotShots
 
 Name:           hotshots
-Version:        2.1.1
-Release:        2
+Version:        2.2.0
+Release:        1
 License:        GPLv2+
 Summary:        Screen-shot and Annotation Tool
-URL:            https://sourceforge.net/projects/hotshots/
+URL:            http://thehive.xbee.net/index.php?module=pages&func=display&pageid=31
 Group:          Graphics
-Source0:        http://garr.dl.sourceforge.net/project/hotshots/%{version}/HotShots-%{version}-src.zip
+Source0:        http://garr.dl.sourceforge.net/project/hotshots/%{version}/%{oname}-%{version}-src.zip
 
 BuildRequires:  imagemagick
 BuildRequires:  hicolor-icon-theme
@@ -41,15 +41,14 @@ popd
 
 %build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=%{buildroot}/usr \
+%cmake -DCMAKE_INSTALL_PREFIX=/usr \
 	  -DCMAKE_BUILD_TYPE=Release 
 
 %make
 
 %install
-cd build
-make INSTALL_ROOT=%{buildroot} install
-cd -
+%makeinstall_std -C build/build
+
 
 
 # icons
@@ -76,8 +75,7 @@ desktop-file-install %{name}.desktop \
   --add-category=KDE \
   --add-category=Graphics 
 cd -
-
-perl -pi -e "s|/usr/local/bin/hotshots|hotshots|"  %{buildroot}%{_datadir}/applications/%{name}.desktop
+perl -pi -e "s|/usr/local/bin/hotshots|hotshots|" %{buildroot}%{_datadir}/applications/*.desktop
 
 %files 
 %doc *.txt
