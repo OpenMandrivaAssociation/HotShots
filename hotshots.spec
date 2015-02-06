@@ -4,7 +4,7 @@
 
 Name:           hotshots
 Version:        2.1.1
-Release:        1
+Release:        2
 License:        GPLv2+
 Summary:        Screen-shot and Annotation Tool
 URL:            https://sourceforge.net/projects/hotshots/
